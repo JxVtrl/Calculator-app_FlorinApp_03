@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState, useRef } from 'react'
-
+import { useIsOperator } from '../hook/useIsOperator'
 
 const AppContext = createContext()
 
@@ -36,8 +36,16 @@ export function AppProvider({ children }) {
     }
 
     const showTheResult = () => {
-        console.log(screenValue)
-        
+        // se o ultimo digito for um operador
+        if (useIsOperator(screenValue[screenValue.length - 1]))
+            setScreenValue(screenValue.slice(0, -1))
+
+        if (screenValue.includes('*') || screenValue.includes('/')) {
+            // get first operator
+            for (let i = 0; i < screenValue.length; i++) {
+                
+            }
+        }
     }
 
 
